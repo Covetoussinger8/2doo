@@ -7,6 +7,17 @@ class TodoItemsController < ApplicationController
         redirect_to @todo_list
     end
 
+    def destroy
+        @todo_item = @todo_list.todo_items.find(params[:id])
+        if @todo_item.destroy
+            flash[:success] = "Lista To-do excluída com sucesso!"
+        else
+            flash[:error] = "Exclusão da lista To-do não foi possível"
+        end
+
+        redirect_to @todo_list
+    end
+
     private
 
     def set_todo_list
