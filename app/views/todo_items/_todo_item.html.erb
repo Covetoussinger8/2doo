@@ -11,7 +11,7 @@
         </div>
     <% else %>
         <div class="complete">
-            <%= button_to "Marcar como Finalizado", complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
+            <%= button_to "Marcar como finalizado", complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
         </div>
         <div class="todo_item">
             <p><%= todo_item.content %></p>
