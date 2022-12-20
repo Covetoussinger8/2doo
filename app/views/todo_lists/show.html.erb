@@ -1,29 +1,27 @@
 <p style="color: green"><%= notice %></p>
-
-
-<p>
-  <strong>Título:</strong>
-  <%= @todo_list.title %>
-</p>
-
-<p>
-  <strong>Descrição:</strong>
-  <%= @todo_list.description %>
-</p><br>
+<div>
+  <div style=" white-space: nowrap; ">
+    <div style=" display: inline-block; ">
+      <h1><%= @todo_list.title %></h1>
+    </div>
+    <div style=" display: inline-block; float: right; ", class="ms-auto mb-3">
+      <%= button_to "Excluir lista", todo_list_path(@todo_list), method: :delete, data: { confirm: "Você realmente deseja excluir essa lista To-do?" }, class: "btn btn-primary" %>
+    </div>
+    <div style=" display: inline-block; float: right; ", class="ms-auto mb-3">
+      <%= link_to "Editar lista", edit_todo_list_path(@todo_list), class: "btn btn-primary" %>
+    </div>
+  </div>
+  <p><%= @todo_list.description %></p>
+</div>
 
 <div id="todo_items_wrapper">
+  <h4>Tarefas na lista:</h4>  
   <%= render @todo_list.todo_items %>
   <div id="form">
     <%= render "todo_items/form" %>
   </div>
 </div>
 
-<div class="mt-3 mb-3">
-  <%= link_to "Editar lista", edit_todo_list_path(@todo_list), class: "btn btn-primary" %>
-</div>
-<div class="mt-3 mb-3">
-  <%= button_to "Excluir lista", todo_list_path(@todo_list), method: :delete, data: { confirm: "Você realmente deseja excluir essa lista To-do?" }, class: "btn btn-primary" %>
-</div>
-<div class="mt-3 mb-3">
-  <%= link_to "Voltar", todo_lists_path, class: "btn btn-primary" %>
+<div>
+  <%= link_to "Voltar", todo_lists_path, class: "btn btn-primary mt-3" %>
 </div>
