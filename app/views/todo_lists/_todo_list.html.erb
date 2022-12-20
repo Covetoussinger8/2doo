@@ -3,10 +3,11 @@
     <strong>Title:</strong>
     <%= todo_list.title %>
   </p>
-
   <p>
     <strong>Description:</strong>
     <%= todo_list.description %>
   </p>
-
+  <div class="trash">
+    <%= button_to "Excluir", todo_list_path(todo_list), method: :delete, data: { confirm: "Você realmente deseja excluir essa lista To-do?" } %>
+  </div>
 </div>
