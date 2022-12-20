@@ -1,6 +1,7 @@
 class TodoItemsController < ApplicationController
     # Chama "set_todo_list" antes da realização de qualquer outra ação
     before_action :set_todo_list
+    before_action :set_todo_item, except: [:create]
 
     def create
         @todo_item = @todo_list.todo_items.create(todo_item_params)
@@ -10,18 +11,27 @@ class TodoItemsController < ApplicationController
     def destroy
         @todo_item = @todo_list.todo_items.find(params[:id])
         if @todo_item.destroy
-            flash[:success] = "Lista To-do excluída com sucesso!"
+            flash[:success] = "Tarefa excluída com sucesso!"
         else
-            flash[:error] = "Exclusão da lista To-do não foi possível"
+            flash[:error] = "Exclusão da tarefa não foi possível"
         end
 
         redirect_to @todo_list
+    end
+
+    def complete
+        @todo_item.update_attribute(:completed_at, Time.now)
+        redirect_to @todo_list, notice: "Tarefa finalizada"
     end
 
     private
 
     def set_todo_list
         @todo_list = TodoList.find(params[:todo_list_id])
+    end
+
+    def set_todo_item
+        @todo_item = @todo_list.todo_items.find(params[:id])
     end
 
     def todo_item_params
