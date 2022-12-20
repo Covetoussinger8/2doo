@@ -1,16 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<div style=" display: inline-block ">
-  <p>
-    <strong>Título:</strong>
-    <%= @todo_list.title %>
-  </p>
 
-  <p>
-    <strong>Descrição:</strong>
-    <%= @todo_list.description %>
-  </p>
-</div><br>
+<p>
+  <strong>Título:</strong>
+  <%= @todo_list.title %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @todo_list.description %>
+</p><br>
 
 <div id="todo_items_wrapper">
   <%= render @todo_list.todo_items %>
